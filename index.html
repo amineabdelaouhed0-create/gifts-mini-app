@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#160d32">
+<title>Gifts 🎁</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{--bg:#100a24;--panel:#21143f;--panel2:#2b1b50;--gold:#f6c65b;--muted:#b9aecf;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#46256e 0,#160d32 42%,#0d081b 100%);color:var(--white);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+.wrap{max-width:520px;margin:auto;padding:22px 16px 90px}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.brand{display:flex;align-items:center;gap:10px;font-size:23px;font-weight:900;letter-spacing:.3px}
+.logo{width:45px;height:45px;border-radius:15px;background:linear-gradient(145deg,#f8d879,#bd7b23);display:grid;place-items:center;font-size:25px;box-shadow:0 5px 22px #d89d3d55}
+.tag{color:var(--muted);font-size:11px;margin-top:1px}
+.avatar{border:1px solid #654b8c;background:#29194a;border-radius:50%;width:42px;height:42px;display:grid;place-items:center;font-size:20px}
+.balance{padding:21px;border-radius:23px;background:linear-gradient(125deg,#54318a,#2a1852 65%,#1d123b);border:1px solid #7958a0;box-shadow:0 14px 35px #0005;position:relative;overflow:hidden}
+.balance:after{content:"✦";position:absolute;left:20px;top:4px;font-size:80px;color:#fff1}
+.small{font-size:13px;color:#ded1f1}.amount{font-size:35px;font-weight:900;color:var(--gold);margin:6px 0 15px}
+.pill{display:inline-flex;align-items:center;gap:6px;background:#ffffff15;border:1px solid #ffffff22;border-radius:30px;padding:7px 12px;font-size:12px}
+.daily{margin-top:16px;padding:17px;border-radius:20px;background:linear-gradient(110deg,#5a3a20,#302044);border:1px solid #a77a3d;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.daily h3{margin:0 0 4px;font-size:17px}.daily p{margin:0;color:#e4d4b8;font-size:12px}
+button{border:0;cursor:pointer;font:inherit}
+.goldbtn{background:linear-gradient(135deg,#ffe08a,#d89a36);color:#271637;font-weight:900;padding:11px 15px;border-radius:13px;white-space:nowrap}
+.section{display:flex;align-items:center;justify-content:space-between;margin:24px 2px 12px}
+.section h2{font-size:18px;margin:0}.section span{font-size:11px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{background:linear-gradient(145deg,#2b1d4b,#1d1436);border:1px solid #493467;border-radius:19px;padding:16px;min-height:118px;text-align:right;color:white}
+.tile .emoji{font-size:27px;display:block;margin-bottom:10px}.tile b{font-size:14px}.tile small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.wide{grid-column:1/-1;min-height:90px;display:flex;align-items:center;gap:14px}
+.wide .emoji{margin:0}
+.notice{margin-top:18px;text-align:center;color:#9588b0;font-size:10px;line-height:1.7}
+nav{position:fixed;bottom:0;left:0;right:0;background:#160e2aee;backdrop-filter:blur(14px);border-top:1px solid #3b2b56;display:flex;justify-content:space-around;padding:11px 5px calc(11px + env(safe-area-inset-bottom));max-width:520px;margin:auto}
+nav button{background:none;color:#a99bbf;font-size:10px;display:grid;gap:4px;justify-items:center}nav button span{font-size:19px}nav button.active{color:var(--gold)}
+.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);background:#342253;border:1px solid #9471bd;border-radius:12px;padding:10px 16px;font-size:13px;display:none;z-index:5}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="brand"><div class="logo">🎁</div><div>Gifts<div class="tag">PLAY • EARN • ENJOY</div></div></div><div class="avatar">👤</div></header>
+<section class="balance"><div class="small">رصيدك الحالي</div><div class="amount"><span id="points">100</span> <span style="font-size:15px">نقطة</span></div><span class="pill">⭐ نقاط تجريبية</span></section>
+<section class="daily"><div><h3>🎁 هديتك اليومية</h3><p>ادخل كل يوم وخذ نقاط مجانية</p></div><button class="goldbtn" id="dailyBtn">استلم +25</button></section>
+<div class="section"><h2>اكتشف الألعاب</h2><span>اختر نشاطاً</span></div>
+<div class="grid">
+<button class="tile" data-msg="قريباً: تحديات ممتعة"><span class="emoji">🚀</span><b>التحديات</b><small>أكمل المهام واجمع النقاط</small></button>
+<button class="tile" data-msg="قريباً: ألعاب سريعة"><span class="emoji">🎮</span><b>مركز الألعاب</b><small>العب للتسلية</small></button>
+<button class="tile" data-msg="قريباً: عجلة ترفيهية بالنقاط التجريبية"><span class="emoji">🎡</span><b>عجلة الحظ</b><small>نقاط افتراضية فقط</small></button>
+<button class="tile" data-msg="قريباً: قائمة الهدايا"><span class="emoji">🎒</span><b>حقيبتي</b><small>شاهد هداياك</small></button>
+<button class="tile wide" data-msg="قريباً: دعوة الأصدقاء"><span class="emoji">👥</span><div><b>ادعُ أصدقاءك</b><small>اجمع نقاطاً تجريبية عند المشاركة</small></div></button>
+</div>
+<div class="section"><h2>لوحة المتصدرين</h2><span>قريباً</span></div>
+<div class="tile" style="min-height:auto"><b>🏆 كن من الأوائل!</b><small>سيظهر ترتيب اللاعبين هنا بعد ربط قاعدة البيانات.</small></div>
+<p class="notice">نسخة تجريبية للترفيه والتعلّم. النقاط افتراضية وليست أموالاً ولا يمكن إيداعها أو سحبها.</p>
+</div>
+<nav><button class="active"><span>⌂</span>الرئيسية</button><button data-msg="قسم الهدايا قيد التطوير"><span>🎁</span>الهدايا</button><button data-msg="قسم المهام قيد التطوير"><span>⚡</span>المهام</button><button data-msg="الملف الشخصي قيد التطوير"><span>👤</span>حسابي</button></nav>
+<div class="toast" id="toast"></div>
+<script>
+const tg=window.Telegram?.WebApp; if(tg){tg.ready();tg.expand(); try{tg.setHeaderColor('#160d32');tg.setBackgroundColor('#100a24')}catch(e){}}
+let points=Number(localStorage.getItem('gifts_points')||100);
+let claimed=localStorage.getItem('gifts_daily_date')||'';
+const pointsEl=document.getElementById('points'); const toast=document.getElementById('toast');
+function render(){pointsEl.textContent=points}
+function message(s){toast.textContent=s;toast.style.display='block';setTimeout(()=>toast.style.display='none',2200);if(tg)tg.HapticFeedback?.notificationOccurred('success')}
+document.getElementById('dailyBtn').addEventListener('click',()=>{
+ const today=new Date().toISOString().slice(0,10);
+ if(claimed===today){message('لقد استلمت هديتك اليوم 🎁');return}
+ points+=25;claimed=today;localStorage.setItem('gifts_points',points);localStorage.setItem('gifts_daily_date',claimed);render();message('مبروك! أضفنا 25 نقطة تجريبية');
+});
+document.querySelectorAll('[data-msg]').forEach(b=>b.addEventListener('click',()=>message(b.dataset.msg)));
+render();
+</script>
+</body></html>
